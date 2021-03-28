@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\StackOverflow\Infrastructure\Controller;
 
 use App\StackOverflow\ApplicationService\DTO\QuestionGetterRequest;
 use App\StackOverflow\ApplicationService\QuestionGetter;
