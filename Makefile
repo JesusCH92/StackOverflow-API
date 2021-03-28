@@ -2,7 +2,7 @@
 
 DOCKERING_PHP = php-fpm
 UID = $(shell id -u)
-DOCKER_NETWORK = docker-symfony-network
+DOCKER_NETWORK = stackoverflow-network
 
 
 ##	create-network:			create the default network
