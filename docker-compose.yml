@@ -12,7 +12,7 @@ services:
     volumes:
       - ./public:/app/public
     networks:
-      - docker-symfony-network
+      - stackoverflow-network
     depends_on:
       - php-fpm
 
@@ -33,29 +33,8 @@ services:
 #    - ./docker/php/xdebug-macos.ini:/usr/local/etc/php/conf.d/xdebug.ini # MacOS users
       - ~/.ssh/id_rsa:/home/appuser/.ssh/id_rsa
     networks:
-      - docker-symfony-network
-    depends_on:
-      - mysql
-
-  mysql:
-    container_name: mysql
-    image: mysql:8.0
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_DATABASE: docker_symfony_database
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: root
-    command: mysqld --sql_mode="STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION"
-    volumes:
-      - docker-symfony-database-data:/var/lib/mysql
-    networks:
-      - docker-symfony-network
-
-volumes:
-  docker-symfony-database-data:
+      - stackoverflow-network
 
 networks:
-  docker-symfony-network:
+  stackoverflow-network:
     external: true
