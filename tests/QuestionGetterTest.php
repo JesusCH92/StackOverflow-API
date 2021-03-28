@@ -2,6 +2,9 @@
 
 namespace App\Tests;
 
+use App\StackOverflow\ApplicationService\DTO\QuestionGetterRequest;
+use App\StackOverflow\ApplicationService\QuestionGetter;
+use App\Tests\Spy\QuestionRepositorySpy;
 use PHPUnit\Framework\TestCase;
 
 class QuestionGetterTest extends TestCase
@@ -11,6 +14,19 @@ class QuestionGetterTest extends TestCase
      */
     public function shouldGetTheQuestionCollectionFromStackOverflowApi()
     {
-        $this->assertTrue(true);
+        $questionRepositorySpy = new QuestionRepositorySpy();
+        $service = new QuestionGetter(
+            $questionRepositorySpy
+        );
+
+        $service(
+            new QuestionGetterRequest(
+                'symfony',
+                '2021-03-01',
+                '2021-03-10',
+            )
+        );
+
+        $this->assertTrue($questionRepositorySpy->verify());
     }
 }
