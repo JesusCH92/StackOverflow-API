@@ -4,6 +4,7 @@ namespace App\Tests;
 
 use App\StackOverflow\ApplicationService\DTO\QuestionGetterRequest;
 use App\StackOverflow\ApplicationService\QuestionGetter;
+use App\StackOverflow\Domain\Exception\InvalidDate;
 use App\StackOverflow\Domain\Exception\TaggedIsEmpty;
 use App\StackOverflow\Domain\Exception\ToDateIsNotGreaterThanFromDate;
 use App\StackOverflow\Infrastructure\StackOverflowApiQuestionRepository;
@@ -74,6 +75,28 @@ class QuestionGetterTest extends TestCase
                 'symfony',
                 '2021-03-10',
                 '2021-03-01',
+            )
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function shouldThrowExceptionIfDateIsInvalidFormat()
+    {
+        $this->expectException(InvalidDate::class);
+
+        $service = new QuestionGetter(
+            new StackOverflowApiQuestionRepository(
+                HttpClient::create()
+            )
+        );
+
+        $service(
+            new QuestionGetterRequest(
+                'Symfony',
+                '20-03-2021',
+                ''
             )
         );
     }
