@@ -12,6 +12,8 @@ class QuestionRepositorySpy implements QuestionRepository
     public function getQuestionCollection(Filter $filter)
     {
         $this->validateWasCalled = true;
+
+        return [];
     }
 
     public function verify(): bool
