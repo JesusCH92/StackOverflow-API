@@ -36,7 +36,7 @@ class StackOverflowApiController extends AbstractController
         );
 
         return new JsonResponse(
-            $questionCollection
+            $questionCollection->questionCollection()
         );
     }
 }
