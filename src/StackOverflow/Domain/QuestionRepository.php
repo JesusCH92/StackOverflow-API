@@ -6,5 +6,5 @@ namespace App\StackOverflow\Domain;
 
 interface QuestionRepository
 {
-    public function getQuestionCollection();
+    public function getQuestionCollection(Filter $filter);
 }
