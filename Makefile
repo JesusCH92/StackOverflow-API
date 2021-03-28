@@ -24,3 +24,13 @@ stop:
 interactive: create-network
 		$(MAKE) start | true
 		U_ID=${UID} docker exec -it --user ${UID} ${DOCKERING_PHP} bash
+
+
+## run-test:				runs test
+run-test:
+		@U_ID=${UID} docker exec --user ${UID} -it ${DOCKERING_PHP} php bin/phpunit --testdox
+
+
+## install:					install dependecies with compose
+install:
+		@U_ID=${UID} docker exec --user ${UID} -it ${DOCKERING_PHP} composer install --no-scripts --no-interaction --optimize-autoloader
