@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\StackOverflow\ApplicationService;
 
 use App\StackOverflow\ApplicationService\DTO\QuestionGetterRequest;
+use App\StackOverflow\ApplicationService\DTO\QuestionGetterResponse;
 use App\StackOverflow\Domain\Filter;
 use App\StackOverflow\Domain\QuestionRepository;
 use App\StackOverflow\Domain\ValueObject\DateFilter;
@@ -19,7 +20,7 @@ final class QuestionGetter
         $this->questionRepository = $questionRepository;
     }
 
-    public function __invoke(QuestionGetterRequest $questionGetterRequest)
+    public function __invoke(QuestionGetterRequest $questionGetterRequest): QuestionGetterResponse
     {
         $questionCollection = $this->questionRepository->getQuestionCollection(
             new Filter(
@@ -30,6 +31,6 @@ final class QuestionGetter
                 )
             )
         );
-        return $questionCollection;
+        return new QuestionGetterResponse($questionCollection);
     }
 }
