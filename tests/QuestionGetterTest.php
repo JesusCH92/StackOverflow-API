@@ -6,8 +6,10 @@ use App\StackOverflow\ApplicationService\DTO\QuestionGetterRequest;
 use App\StackOverflow\ApplicationService\QuestionGetter;
 use App\StackOverflow\Domain\Exception\TaggedIsEmpty;
 use App\StackOverflow\Domain\Exception\ToDateIsNotGreaterThanFromDate;
+use App\StackOverflow\Infrastructure\StackOverflowApiQuestionRepository;
 use App\Tests\Spy\QuestionRepositorySpy;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpClient\HttpClient;
 
 class QuestionGetterTest extends TestCase
 {
@@ -39,9 +41,10 @@ class QuestionGetterTest extends TestCase
     {
         $this->expectException(TaggedIsEmpty::class);
 
-        $questionRepositorySpy = new QuestionRepositorySpy();
         $service = new QuestionGetter(
-            $questionRepositorySpy
+            new StackOverflowApiQuestionRepository(
+                HttpClient::create()
+            )
         );
 
         $service(
@@ -60,9 +63,10 @@ class QuestionGetterTest extends TestCase
     {
         $this->expectException(ToDateIsNotGreaterThanFromDate::class);
 
-        $questionRepositorySpy = new QuestionRepositorySpy();
         $service = new QuestionGetter(
-            $questionRepositorySpy
+            new StackOverflowApiQuestionRepository(
+                HttpClient::create()
+            )
         );
 
         $service(
