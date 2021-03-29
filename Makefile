@@ -38,8 +38,8 @@ install:
 
 ## deploy:					deploy project
 deploy:
-	-@$(MAKE) start | true
+	-@$(MAKE) start
+	-@$(MAKE) install
 	-@U_ID=${UID} docker exec --user ${UID} -it ${DOCKERING_PHP} php bin/console cache:clear -e prod;
 	-@U_ID=${UID} docker exec --user ${UID} -it ${DOCKERING_PHP} php bin/console cache:warmup -e prod;
-	-@$(MAKE) install
 	-@$(MAKE) run-test
