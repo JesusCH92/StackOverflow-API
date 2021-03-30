@@ -12,13 +12,13 @@ Esta nueva API tiene los siguientes filtros:
 
 # Requisitos del sistema
 
-Para realizar este proyecto se trabajó con el stack de Symfony y Nginex, esto fue montado en un entorno dockerizado, así que es necesario tener instalado:
+Para realizar este proyecto se trabajó con el stack de Symfony y Nginx, esto fue montado en un entorno dockerizado, así que es necesario tener instalado:
 * Docker (Docker-compose)
 
 # Ejecución del proyecto
 
 ## **Linux o Mac**
-Si está trabajando con un S.O. de la familia de Unix (Linux o Mac), puede utilizar ejecutar lo siguiente:
+Si está trabajando con un S.O. de la familia de Unix (Linux o Mac), puede ejecutar lo siguiente:
 
 **1. Deploy Project**
 
@@ -31,7 +31,7 @@ make deploy
 
 Si ya ha desplegado el proyecto, puede ejecutar los tests ejecutando el siguiente comando:
 ```
-make run-tests
+make run-test
 ```
 
 ## **Windows**
