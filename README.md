@@ -41,7 +41,7 @@ Si está trabajado con windows, siga los siguientes pasos:
 **1. Crear una red**
 
 Primero cree la network:
-```
+```shell
 docker network create stackoverflow-network
 ```
 
