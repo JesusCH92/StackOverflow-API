@@ -48,7 +48,7 @@ docker network create stackoverflow-network
 **2. Levantar el entorno**
 
 El siguiente paso es levantar el entorno con este comando:
-```
+```.bash
 U_ID=(id -u) docker-compose up -d
 ```
 
